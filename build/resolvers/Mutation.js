@@ -118,8 +118,6 @@ function createMovement(parent, args, context, info) {
         return __generator(this, function (_a) {
             userId = utils_1.getUserId(context);
             accountId = +args.accountId;
-            console.log({ userId: userId });
-            console.log({ accountId: accountId });
             return [2 /*return*/, context.prisma.movement.create({
                     data: {
                         client: { connect: { id: userId } },
@@ -128,6 +126,24 @@ function createMovement(parent, args, context, info) {
                         amount: args.amount,
                         type: args.type,
                     },
+                })];
+        });
+    });
+}
+function updateMovement(parent, args, context, info) {
+    return __awaiter(this, void 0, void 0, function () {
+        var movementId;
+        return __generator(this, function (_a) {
+            movementId = +args.movementId;
+            return [2 /*return*/, context.prisma.movement.update({
+                    where: {
+                        id: movementId,
+                    },
+                    data: {
+                        description: args.description,
+                        type: args.type,
+                        amount: +args.amount,
+                    }
                 })];
         });
     });
@@ -150,5 +166,6 @@ exports.default = {
     login: login,
     createAccount: createAccount,
     createMovement: createMovement,
+    updateMovement: updateMovement,
     deleteMovement: deleteMovement,
 };

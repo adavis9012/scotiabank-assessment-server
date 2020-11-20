@@ -8,6 +8,7 @@ type Query {
 type Mutation {
     createAccount(accountType: AccountTypes!, statement: String!, availableValue: Float!): Account!
     createMovement(description: String!, accountId: ID!, amount: Float!, type: MovementTypes!): Movement!
+    updateMovement(movementId: ID!, description: String, amount: Float, type: MovementTypes): Movement
     deleteMovement(movementId: ID!): Movement
     signup(email: String!, citizenshipCard: String!, password: String!, name: String!, lastname: String!): AuthPayload
     login(email: String!, password: String!): AuthPayload

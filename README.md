@@ -14,21 +14,9 @@ This project use Graphql
 APP_SECRET="doNotGiveAnyoneThisKey"
 ```
 
-3- Run the following commands to establish the database
+3- Raise [scotiabank-assesment-client](https://github.com/adavis9012/scotiabank-assesment-client)
 
-```
-prisma migrate save --experimental
-prisma migrate up --experimental
-prisma generate
-```
-
-4- Feed manually the database or run the following script to generate a base
-
-`node src/script.js`
-
-5- Raise `scotiabank-assesment-client`
-
-6- Have fun!
+4- Have fun!
 
 ### Scripts
 

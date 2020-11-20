@@ -22,7 +22,7 @@ var Query_1 = __importDefault(require("./resolvers/Query"));
 var Movement_1 = __importDefault(require("./resolvers/Movement"));
 var dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-var PORT = process.env.PORT || 4001;
+var PORT = process.env.PORT || 4000;
 var prisma = new client_1.PrismaClient();
 var resolvers = {
     Query: Query_1.default,
