@@ -42,12 +42,14 @@ function main() {
         var newLink, allLinks;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, prisma.link.create({
-                        data: {
-                            description: 'Fullstack tutorial for GraphQL',
-                            url: 'www.howtographql.com',
-                        },
-                    })];
+                case 0:
+                    console.log("Generationg ");
+                    return [4 /*yield*/, prisma.link.create({
+                            data: {
+                                description: 'Fullstack tutorial for GraphQL',
+                                url: 'www.howtographql.com',
+                            },
+                        })];
                 case 1:
                     newLink = _a.sent();
                     return [4 /*yield*/, prisma.link.findMany()];

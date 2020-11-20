@@ -22,6 +22,7 @@ var Query_1 = __importDefault(require("./resolvers/Query"));
 var Movement_1 = __importDefault(require("./resolvers/Movement"));
 var dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
+var PORT = process.env.PORT || 4001;
 var prisma = new client_1.PrismaClient();
 var resolvers = {
     Query: Query_1.default,
@@ -36,6 +37,8 @@ var server = new graphql_yoga_1.GraphQLServer({
         return __assign(__assign({}, request), { prisma: prisma });
     },
 });
-server.start(function () {
-    return console.log('Server is running on port http://localhost:4000');
+server.start({
+    port: PORT
+}, function () {
+    console.log("Server is running on port http://localhost:" + PORT);
 });
