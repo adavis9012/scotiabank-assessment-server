@@ -1,26 +1,64 @@
-# 🧰 Simple TypeScript Starter | 2020
+# Scotiabank assessment Server
 
-> We talk about a lot of **advanced Node.js and TypeScript** concepts on [the blog](https://khalilstemmler.com), particularly focused around Domain-Driven Design and large-scale enterprise application patterns. However, I received a few emails from readers that were interested in seeing what a basic TypeScript starter project looks like. So I've put together just that.
+This project use Graphql
 
-### Features
+## Steps (local)
 
-- Minimal
-- TypeScript v4
-- Testing with Jest
-- Linting with Eslint and Prettier
-- Pre-commit hooks with Husky
-- VS Code debugger scripts
-- Local development with Nodemon
+1- Install all packages
+
+`npm install`
+
+2- Create a .env file in the root file with the key APP_SECRET, for example
+
+```
+APP_SECRET="doNotGiveAnyoneThisKey"
+```
+
+3- Run the following commands to establish the database
+
+```
+prisma migrate save --experimental
+prisma migrate up --experimental
+prisma generate
+```
+
+4- Feed manually the database or run the following script to generate a base
+
+`node src/script.js`
+
+5- Raise `scotiabank-assesment-client`
+
+6- Have fun!
 
 ### Scripts
 
-#### `npm run start:dev`
+#### `npm run start:watch`
 
 Starts the application in development using `nodemon` and `ts-node` to do hot reloading.
 
 #### `npm run start`
 
 Starts the app in production by first building the project with `npm run build`, and then executing the compiled JavaScript at `build/index.js`.
+
+#### `npx prisma studio`
+
+Start Prisma Studio to have a visual editor for the database.
+
+#### `npx prisma migrate save --experimental`
+
+Saves a new migration to the prisma/migrations directory
+
+#### `npx prisma migrate up --experimental`
+
+Executes the migration against the database
+
+#### `npx prisma generate`
+
+Reads the Prisma Schema and generates the Prisma Client library into *node_modules/@prisma/client* 
+
+#### `node src/script.js`
+
+Generates default data for database
 
 #### `npm run build`
 

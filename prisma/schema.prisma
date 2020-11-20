@@ -1,0 +1,42 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id                Int      @id @default(autoincrement())
+  citizenshipCard   String   @unique
+  name              String
+  lastname          String
+  email             String   @unique
+  password          String
+  accounts          Account[]
+  movements         Movement[]
+}
+
+model Account {
+  id                Int         @id @default(autoincrement())
+  createdAt         DateTime    @default(now())
+  accountType       String
+  statement         String
+  availableValue    Float
+  client            User        @relation(fields: [clientId], references: [id])
+  clientId          Int
+  movements         Movement[]
+}
+
+model Movement {
+  id                Int         @id @default(autoincrement())
+  client            User        @relation(fields: [clientId], references: [id])
+  clientId          Int
+  account           Account     @relation(fields: [accountId], references: [id])
+  accountId         Int
+  createdAt         DateTime    @default(now())
+  amount            Float
+  type              String
+  description       String
+}

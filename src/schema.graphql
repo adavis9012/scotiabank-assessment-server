@@ -1,0 +1,66 @@
+type Query {
+    account(id: ID!): Account!
+    accounts(filter: String, orderBy: AccountsOrderByInput): [Account!]!
+    movements(accountId: ID!): [Movement!]!
+    client: User!
+}
+
+type Mutation {
+    createAccount(accountType: AccountTypes!, statement: String!, availableValue: Float!): Account!
+    createMovement(description: String!, accountId: ID!, amount: Float!, type: MovementTypes!): Movement!
+    deleteMovement(movementId: ID!): Movement
+    signup(email: String!, citizenshipCard: String!, password: String!, name: String!, lastname: String!): AuthPayload
+    login(email: String!, password: String!): AuthPayload
+}
+
+type AuthPayload {
+    token: String
+    user: User
+}
+
+type User {
+    id: ID!
+    citizenshipCard: String!
+    name: String!
+    lastname: String!
+    email: String!
+    accounts: [Account!]!
+}
+
+type Account {
+    id: ID!
+    accountType: AccountTypes
+    statement: String!
+    availableValue: Float!
+    movements: [Movement]
+}
+
+type Movement {
+    id: ID!
+    createdAt: String
+    amount: Float!
+    type: MovementTypes!
+    account: Account!
+    description: String!
+}
+
+enum MovementTypes {
+    credit
+    debit
+}
+
+enum AccountTypes {
+    SavingAccount
+    CurrentAccount
+    CreditCard
+}
+
+enum Sort {
+    asc
+    desc
+}
+
+input AccountsOrderByInput {
+    statement: Sort
+    availableValue: Sort
+}
